@@ -28,7 +28,7 @@ const FoodModel: React.FC = () => {
     });
   }, [scene]);
 
-  useFrame((state) => {
+  useFrame(() => {
     if (!meshRef.current) return;
 
     // Smooth continuous rotation
