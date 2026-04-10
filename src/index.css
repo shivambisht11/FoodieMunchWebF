@@ -11,10 +11,24 @@
   --font-display: "Poppins", "system-ui", "sans-serif";
 
   --animate-float: float 4s ease-in-out infinite;
+  --animate-mesh: mesh 10s linear infinite;
 
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
+  }
+
+  @keyframes mesh {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes scan {
+    0% { top: 0%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
   }
 }
 
@@ -41,12 +55,66 @@
 }
 
 @utility glass-card {
-  @apply glass rounded-3xl p-6 transition-all duration-300;
-  will-change: transform, border-color;
+  @apply glass rounded-[2.5rem] p-8 transition-all duration-500 relative;
+  will-change: transform, border-color, box-shadow;
   &:hover {
     border-color: var(--color-accent-yellow);
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(255, 204, 0, 0.15);
   }
+}
+
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@utility perspective-2000 {
+  perspective: 2000px;
+}
+
+@utility rotate-y-0 {
+  transform: rotateY(0deg);
+}
+
+@utility -rotate-y-180 {
+  transform: rotateY(-180deg);
+}
+
+@utility rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@utility backface-hidden {
+  backface-visibility: hidden;
+}
+
+@utility blueprint-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
+}
+
+@utility mesh-bg {
+  background: radial-gradient(circle at 50% 50%, var(--color-accent-red), transparent),
+              radial-gradient(circle at 80% 20%, var(--color-accent-yellow), transparent);
+  background-size: 200% 200%;
+  animation: mesh 10s linear infinite;
+  opacity: 0.05;
+}
+
+@utility graph-paper {
+  background-image: 
+    linear-gradient(to right, rgba(238, 39, 46, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(238, 39, 46, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+@utility scan-line {
+  @apply absolute left-0 right-0 h-[2px] bg-accent-yellow/30 blur-[2px] z-10;
+  animation: scan 3s linear infinite;
 }
 
 @utility premium-btn {
@@ -70,22 +138,66 @@
   }
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+@utility royal-mahogany-leather {
+  background-color: #2b0c0c;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 80%),
+    url("https://www.transparenttextures.com/patterns/leather.png");
+  box-shadow: inset 0 0 150px rgba(0,0,0,0.9), 0 20px 50px rgba(0,0,0,0.8);
 }
 
-::-webkit-scrollbar-track {
-  background: #050505;
+@utility gold-gilt {
+  background: linear-gradient(
+    to bottom,
+    #bf953f 0%,
+    #fcf6ba 45%,
+    #b38728 50%,
+    #fcf6ba 55%,
+    #aa771c 100%
+  );
+  box-shadow: 0 0 10px rgba(186, 149, 63, 0.3);
 }
 
-::-webkit-scrollbar-thumb {
-  background: #222;
-  border-radius: 10px;
+@utility engraved-gold {
+  background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 50%, #fcf6ba 55%, #aa771c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.8)) brightness(1.2);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-red);
+@utility vintage-page {
+  background-color: #f7f1e3;
+  background-image: 
+    url("https://www.transparenttextures.com/patterns/natural-paper.png"),
+    radial-gradient(circle at center, transparent 0%, rgba(139, 69, 19, 0.05) 100%);
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+@utility gold-trim {
+  border: 1px solid #bf953f;
+  background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 50%, #fcf6ba 55%, #aa771c 100%);
+  color: #1a1a1a;
+}
+
+@utility wood-table {
+  background-color: #0a0502;
+  background-image: 
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 100px),
+    linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+}
+
+@utility gold-foil {
+  background: linear-gradient(
+    135deg,
+    #bf953f 0%,
+    #fcf6ba 25%,
+    #b38728 50%,
+    #fcf6ba 75%,
+    #aa771c 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 2px rgba(186, 149, 63, 0.5));
 }
 
 /* Lenis Smooth Scroll FIX */
