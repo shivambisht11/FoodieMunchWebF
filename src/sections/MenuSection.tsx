@@ -1,33 +1,9 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from '../utils/gsap';
-import MenuCard from '../components/MenuCard';
 import MenuBook from '../components/MenuBook';
-
-// Assets
-import burgerImg from '../assets/burger.png';
-import pizzaImg from '../assets/pizza.png';
-import pastaImg from '../assets/pasta.png';
-import momosImg from '../assets/momos.png';
-import drinksImg from '../assets/drinks.png';
 
 const MenuSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState('All');
-
-  const menuItems = [
-    { title: 'Signature Burger', price: '199', category: 'Fast Food', image: burgerImg },
-    { title: 'Artisan Pizza', price: '299', category: 'Pizza', image: pizzaImg },
-    { title: 'Truffle Pasta', price: '249', category: 'Pasta', image: pastaImg },
-    { title: 'Gourmet Momos', price: '149', category: 'Appetizers', image: momosImg },
-    { title: 'Cold Brew', price: '129', category: 'Beverages', image: drinksImg },
-    { title: 'Fruit Cocktail', price: '159', category: 'Beverages', image: drinksImg },
-  ];
-
-  const categories = ['All', 'Fast Food', 'Pizza', 'Pasta', 'Appetizers', 'Beverages'];
-
-  const filteredItems = activeTab === 'All' 
-    ? menuItems 
-    : menuItems.filter(item => item.category === activeTab);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -37,18 +13,6 @@ const MenuSection: React.FC = () => {
         stagger: 0.2,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      });
-
-      gsap.from('.menu-item', {
-        scale: 0.9,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.8,
-        ease: 'back.out(1.7)',
-        scrollTrigger: {
-          trigger: '.menu-grid',
           start: 'top 80%',
         },
       });

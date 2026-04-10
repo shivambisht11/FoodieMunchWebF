@@ -7,7 +7,6 @@ function cn(...inputs: ClassValue[]) {
 }
 
 interface PageProps {
-  index: number;
   currentPage: number;
   children: React.ReactNode;
   isFlipped: boolean;
@@ -15,7 +14,7 @@ interface PageProps {
   isCover?: boolean;
 }
 
-const Page: React.FC<PageProps> = ({ index, children, isFlipped, zIndex, isCover }) => {
+const Page: React.FC<PageProps> = ({ children, isFlipped, zIndex, isCover }) => {
   return (
     <div
       className={cn(
@@ -82,7 +81,7 @@ const MenuBook: React.FC = () => {
                 </div>
 
                 {/* Page 0: ROYAL COVER */}
-                <Page index={0} currentPage={currentPage} isFlipped={currentPage > 0} zIndex={4} isCover={true}>
+                <Page currentPage={currentPage} isFlipped={currentPage > 0} zIndex={4} isCover={true}>
                     <div 
                         className="w-full h-full flex flex-col items-center justify-between p-24 text-center relative"
                         onClick={handleNext}
@@ -121,7 +120,7 @@ const MenuBook: React.FC = () => {
                 </Page>
 
                 {/* Page 1: CATEGORY ONE (Blueprints) */}
-                <Page index={1} currentPage={currentPage} isFlipped={currentPage > 1} zIndex={3}>
+                <Page currentPage={currentPage} isFlipped={currentPage > 1} zIndex={3}>
                     <div className="w-full h-full p-20 flex flex-col justify-between relative" onClick={handleNext}>
                         <div className="absolute inset-0 blueprint-grid opacity-5 pointer-events-none" />
                         
@@ -160,7 +159,7 @@ const MenuBook: React.FC = () => {
                 </Page>
 
                 {/* Page 2: CATEGORY TWO */}
-                <Page index={2} currentPage={currentPage} isFlipped={currentPage > 2} zIndex={2}>
+                <Page currentPage={currentPage} isFlipped={currentPage > 2} zIndex={2}>
                     <div className="w-full h-full p-20 flex flex-col justify-between relative" onClick={handleNext}>
                         <div className="absolute inset-0 blueprint-grid opacity-5 pointer-events-none" />
                         
@@ -201,7 +200,7 @@ const MenuBook: React.FC = () => {
                 </Page>
 
                 {/* Page 3: FINALE / BEVERAGES */}
-                <Page index={3} currentPage={currentPage} isFlipped={currentPage > 3} zIndex={1}>
+                <Page currentPage={currentPage} isFlipped={currentPage > 3} zIndex={1}>
                     <div className="w-full h-full p-24 flex flex-col items-center justify-center text-center relative" onClick={handlePrev}>
                         <div className="absolute inset-0 blueprint-grid opacity-5 pointer-events-none" />
                         
