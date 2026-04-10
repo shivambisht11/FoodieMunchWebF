@@ -1,36 +1,4 @@
-import React, { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { useGLTF, Float } from '@react-three/drei';
-import ThreeScene from '../three/ThreeScene';
-import * as THREE from 'three';
-
-const PizzaModel: React.FC = () => {
-  const meshRef = useRef<THREE.Group>(null);
-  const { scene } = useGLTF('/pizza_model.glb');
-
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    meshRef.current.rotation.y += 0.01;
-    
-    // Smooth mouse parallax
-    const targetX = state.mouse.x * 1.5;
-    const targetY = state.mouse.y * 1.5;
-    meshRef.current.position.x = THREE.MathUtils.lerp(meshRef.current.position.x, targetX, 0.05);
-    meshRef.current.position.y = THREE.MathUtils.lerp(meshRef.current.position.y, targetY, 0.05);
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={1} floatIntensity={1.5}>
-      <primitive 
-        ref={meshRef} 
-        object={scene} 
-        scale={4} 
-        position={[0, 0, 0]} 
-        rotation={[0.5, 0, 0]}
-      />
-    </Float>
-  );
-};
+import React from 'react';
 
 const ExperienceSection: React.FC = () => {
   return (
@@ -54,6 +22,6 @@ const ExperienceSection: React.FC = () => {
   );
 };
 
-useGLTF.preload('/pizza_model.glb');
+// 3D Preloads removed for stability
 
 export default ExperienceSection;

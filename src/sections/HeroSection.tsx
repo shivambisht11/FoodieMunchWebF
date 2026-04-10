@@ -1,6 +1,4 @@
 import React, { useLayoutEffect, useRef } from 'react';
-import ThreeScene from '../three/ThreeScene';
-import FoodModel from '../three/FoodModel';
 import { gsap } from '../utils/gsap';
 
 const HeroSection: React.FC = () => {

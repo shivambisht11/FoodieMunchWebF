@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Stage, PerspectiveCamera, Float, Environment, ContactShadows } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
 
 interface ThreeSceneProps {
   children: React.ReactNode;
